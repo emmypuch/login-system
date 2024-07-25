@@ -1,36 +1,38 @@
 <!-- DocumentUpload.vue -->
 <template>
   <div class="wrapper">
-    <div class="upload-documents">
-      <h2>Upload Documents</h2>
-      <form @submit.prevent="uploadDocuments" class="upload-form">
-        <div class="form-group">
-          <label>Tax ID Document:</label>
-          <input
-            type="file"
-            ref="taxIDFile"
-            class="form-control-file"
-            required
-          />
-          <div v-if="formErrors.taxIDFile" class="error-message">
-            {{ formErrors.taxIDFile }}
+    <div class="center">
+      <div class="upload-documents">
+        <h2>Upload Documents</h2>
+        <form @submit.prevent="uploadDocuments" class="upload-form">
+          <div class="form-group">
+            <label>Tax ID Document:</label>
+            <input
+              type="file"
+              ref="taxIDFile"
+              class="form-control-file"
+              required
+            />
+            <div v-if="formErrors.taxIDFile" class="error-message">
+              {{ formErrors.taxIDFile }}
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Business License Document:</label>
-          <input
-            type="file"
-            ref="licenseFile"
-            class="form-control-file"
-            required
-          />
-          <div v-if="formErrors.licenseFile" class="error-message">
-            {{ formErrors.licenseFile }}
+          <div class="form-group">
+            <label>Business License Document:</label>
+            <input
+              type="file"
+              ref="licenseFile"
+              class="form-control-file"
+              required
+            />
+            <div v-if="formErrors.licenseFile" class="error-message">
+              {{ formErrors.licenseFile }}
+            </div>
           </div>
-        </div>
-        <button type="submit" class="submit-button">Upload Documents</button>
-        <div v-if="error" class="error-message">{{ error }}</div>
-      </form>
+          <button type="submit" class="submit-button">Upload Documents</button>
+          <div v-if="error" class="error-message">{{ error }}</div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -160,6 +162,13 @@ label {
 @media screen and (max-width: 768px) {
   .upload-documents {
     padding: 10px;
+    width: 100%;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
