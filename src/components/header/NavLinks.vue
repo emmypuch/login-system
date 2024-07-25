@@ -2,7 +2,7 @@
   <div class="wrapper">
     <!-- Hamburger Menu for Small Screens -->
     <div class="navbar">
-      <router-link to="/" class="navbar-logo">Login System</router-link>
+      <router-link to="/" class="navbar-logo">SafeSign</router-link>
       <button class="navbar-toggle" @click="toggleMenu">
         <span></span>
         <span></span>
@@ -28,7 +28,7 @@
 
     <!-- Desktop Navbar (Hidden on Small Screens) -->
     <nav class="navbar-desktop">
-      <router-link to="/" class="navbar-logo">Login System</router-link>
+      <router-link to="/" class="navbar-logo">SafeSign</router-link>
       <ul>
         <li>
           <router-link to="/LoginPage" class="nav-login-link"

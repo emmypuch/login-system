@@ -41,9 +41,10 @@ div.hero-section a {
   text-decoration: none;
   font-size: 20px;
   background-color: transparent;
-  border: 1px solid #fdd404;
-  background-color: #fbf9f4;
-  color: #fdd404;
+  /* border: 1px solid #fdd404;
+  background-color: #fbf9f4; */
+  background-color: #fdd404;
+  color: #68a79d;
   padding: 10px 30px;
   border-radius: 7px;
 }
@@ -65,7 +66,7 @@ h4 {
   }
 
   h4 {
-    font-size: 30px;
+    font-size: 25px;
     color: #459185;
     margin-top: 0px;
   }

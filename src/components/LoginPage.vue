@@ -36,10 +36,7 @@
           </div>
         </div>
         <div class="btn">
-          <router-link to="/DashboardPage" class="login-button"
-            >Login</router-link
-          >
-          <!-- <button type="submit" class="login-button">Login</button> -->
+          <button type="submit" class="login-button">Login</button>
         </div>
         <div v-if="error" class="error-message">{{ error }}</div>
       </form>
@@ -69,8 +66,14 @@ export default {
         return;
       }
 
+      // Simulate successful login (replace with actual authentication logic)
       console.log("Logging in with:", this.email, this.password);
-      this.error = "Invalid email or password. Please try again.";
+
+      // Redirect to dashboard upon successful login
+      this.$router.push({
+        path: "/DashboardPage",
+        query: { transition: "fade" },
+      });
     },
     clearErrors() {
       this.formErrors.email = "";
@@ -82,6 +85,14 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 .form-wrapper {
   display: flex;
   justify-content: center;
@@ -157,6 +168,11 @@ div.btn {
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #2c6e49;
 }
 
 .error-message {

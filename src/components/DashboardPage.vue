@@ -25,7 +25,7 @@
       <!-- <div class="toggle-menu-btn" @click="toggleMenu">X</div> -->
       <div class="contents">
         <h2>Welcome, {{ companyName }}</h2>
-        <p>Main dashboard content goes here...</p>
+        <p>Hello happy team...</p>
         <router-link to="/DocumentUpload" class="upload-button"
           >Upload Documents</router-link
         >

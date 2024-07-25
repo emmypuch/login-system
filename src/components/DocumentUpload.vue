@@ -64,6 +64,7 @@ export default {
       }
 
       console.log("Uploading documents:", taxIDFile, licenseFile);
+      this.$router.push("/DashboardPage");
 
       this.clearForm();
     },
@@ -89,6 +90,7 @@ div.wrapper {
   justify-content: center;
   align-items: center;
 }
+
 .upload-documents {
   max-width: 600px;
   width: 400px;
@@ -102,6 +104,12 @@ div.wrapper {
 
 input {
   width: 100%;
+  margin-top: 10px;
+}
+
+label {
+  color: #9ca3af;
+  font-size: 17px;
 }
 
 .upload-documents h2 {
