@@ -41,8 +41,6 @@ div.hero-section a {
   text-decoration: none;
   font-size: 20px;
   background-color: transparent;
-  /* border: 1px solid #fdd404;
-  background-color: #fbf9f4; */
   background-color: #fdd404;
   color: #68a79d;
   padding: 10px 30px;
