@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="dashboard-wrapper">
-      <div class="menu-list" :style="{ width: menuWidth }">
+      <div class="menu-list" :style="{ width: menuWidth }" @click="toggleMenu">
         <div class="company-logo">
           <img v-if="hasLogo" :src="companyLogoUrl" :alt="companyName" />
           <div v-else class="logo-placeholder">{{ initials }}</div>
@@ -17,12 +17,14 @@
           </li>
         </ul>
       </div>
-      <div class="contents">
-        <h2>Welcome, {{ companyName }}</h2>
-        <p>Hello happy team, let's get you started</p>
-        <router-link to="/DocumentUpload" class="upload-button"
-          >Upload Documents</router-link
-        >
+      <div class="contents" @click="toggleMenu">
+        <div class="center">
+          <h2>Welcome, {{ companyName }}</h2>
+          <p>Hello happy team, let's get you started</p>
+          <router-link to="/DocumentUpload" class="upload-button"
+            >Upload Documents</router-link
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -43,6 +45,9 @@ export default {
     hasLogo() {
       return this.companyLogoUrl !== "";
     },
+    menuWidth() {
+      return this.menuMinimized ? "20px" : "250px";
+    },
   },
 
   methods: {
@@ -50,6 +55,9 @@ export default {
       setTimeout(() => {
         this.$router.push("/");
       }, 500);
+    },
+    toggleMenu() {
+      this.menuMinimized = !this.menuMinimized;
     },
   },
 };
@@ -74,6 +82,10 @@ export default {
   max-width: 50px;
   max-height: 50px;
   border-radius: 50%;
+}
+
+.center {
+  text-align: center;
 }
 
 .logo-placeholder {
@@ -129,6 +141,11 @@ div.menu-list {
   transition: background-color 0.3s ease;
 }
 
+.menu-list.minimized {
+  width: 60px;
+  transition: width 0.3s ease;
+}
+
 .active-menu-item {
   background-color: #72aaa2;
   color: #fff;
@@ -142,6 +159,10 @@ div.contents {
   background-color: #f0f0f0;
   padding: 20px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 h2 {

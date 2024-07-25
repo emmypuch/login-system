@@ -3,14 +3,15 @@
     <NavLinks />
     <div class="hero-section">
       <div class="hero-title">
-        <h4>
-          Welcome! <br />
-          Make your difference with <br />
-          systems for teams.
-        </h4>
-        <router-link to="/SignupPage" class="nav-signup-link"
-          >Connect & Grow</router-link
-        >
+        <h1>
+          Empower Your Business with <br />
+          Secure Team Systems
+        </h1>
+        <div class="btn">
+          <router-link to="/SignupPage" class="nav-signup-link"
+            >Get Started</router-link
+          >
+        </div>
       </div>
       <div>
         <img src="@/assets/team.png" alt="Team Illustration" />
@@ -47,9 +48,10 @@ div.hero-section a {
   border-radius: 7px;
 }
 
-h4 {
+h1 {
   font-size: 40px;
   color: #459185;
+  line-height: 1.3;
 }
 
 @media screen and (max-width: 768px) {
@@ -64,10 +66,17 @@ h4 {
     width: 300px;
   }
 
-  h4 {
+  h1 {
     font-size: 25px;
     color: #459185;
     margin-top: 0px;
+    text-align: center;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

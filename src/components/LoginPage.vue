@@ -141,7 +141,8 @@ div.form-container {
 
 ::placeholder {
   color: #9ca3af;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: lighter;
 }
 
 label {

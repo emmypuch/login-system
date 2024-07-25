@@ -230,7 +230,8 @@ div.form-container {
 
 ::placeholder {
   color: #9ca3af;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: lighter;
 }
 
 label {
@@ -286,12 +287,6 @@ div.btn {
   border-radius: 4px;
   cursor: pointer;
 }
-
-/* .error-message {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-} */
 
 @media screen and (max-width: 768px) {
   div.form-container {

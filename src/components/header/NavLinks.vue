@@ -198,15 +198,11 @@ export default {
     width: 100%;
     z-index: 1000;
     display: none;
-    /* transform: translateY(-100%);
-    opacity: 0; */
   }
 
   .menu-open {
     display: block;
     padding: 15px;
-    /* transform: translateY(0);
-    opacity: 1; */
   }
 
   .menu-open ul {

@@ -1,4 +1,3 @@
-<!-- DocumentUpload.vue -->
 <template>
   <div class="wrapper">
     <div class="center">
