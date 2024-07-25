@@ -94,7 +94,7 @@ div.wrapper {
 
 .upload-documents {
   max-width: 600px;
-  width: 400px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -152,6 +152,7 @@ label {
   transition: background-color 0.3s ease;
   width: 100%;
   font-size: 15px;
+  margin-bottom: 15px;
 }
 
 .upload-form .submit-button:hover {
@@ -160,7 +161,7 @@ label {
 
 @media screen and (max-width: 768px) {
   .upload-documents {
-    padding: 10px;
+    padding: 10px 30px;
     width: 100%;
   }
 
