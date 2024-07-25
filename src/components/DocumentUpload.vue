@@ -70,15 +70,15 @@ export default {
 
       this.clearForm();
     },
-    clearErrors() {
-      this.formErrors.taxIDFile = "";
-      this.formErrors.licenseFile = "";
-      this.error = "";
-    },
     clearForm() {
       this.$refs.taxIDFile.value = "";
       this.$refs.licenseFile.value = "";
       this.clearErrors();
+    },
+    clearErrors() {
+      this.formErrors.taxIDFile = "";
+      this.formErrors.licenseFile = "";
+      this.error = "";
     },
   },
 };

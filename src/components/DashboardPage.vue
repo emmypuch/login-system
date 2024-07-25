@@ -1,12 +1,7 @@
 <template>
-  <div>
+  <div class="">
     <div class="dashboard-wrapper">
-      <div
-        @click="toggleMenu"
-        class="menu-list"
-        :class="{ minimized: menuMinimized }"
-        :style="{ width: menuWidth }"
-      >
+      <div class="menu-list" :style="{ width: menuWidth }">
         <div class="company-logo">
           <img v-if="hasLogo" :src="companyLogoUrl" :alt="companyName" />
           <div v-else class="logo-placeholder">{{ initials }}</div>
@@ -18,11 +13,10 @@
           <li><a href="#">Notifications</a></li>
           <li><a href="#">Settings</a></li>
           <li @click="logout">
-            <router-link to="/" class="navbar-logo">Logout</router-link>
+            <router-link to="/" class="navbar-logo">Log Out</router-link>
           </li>
         </ul>
       </div>
-      <!-- <div class="toggle-menu-btn" @click="toggleMenu">X</div> -->
       <div class="contents">
         <h2>Welcome, {{ companyName }}</h2>
         <p>Hello happy team, let's get you started</p>
@@ -49,15 +43,9 @@ export default {
     hasLogo() {
       return this.companyLogoUrl !== "";
     },
-    menuWidth() {
-      return this.menuMinimized ? "60px" : "250px";
-    },
   },
 
   methods: {
-    toggleMenu() {
-      this.menuMinimized = !this.menuMinimized;
-    },
     logout() {
       setTimeout(() => {
         this.$router.push("/");
@@ -106,10 +94,6 @@ export default {
   font-weight: bold;
 }
 
-.menu-list.minimized {
-  width: 60px;
-}
-
 div.menu-list {
   background: #459185;
   color: #fff;
@@ -118,20 +102,6 @@ div.menu-list {
   overflow-y: auto;
   transition: width 0.3s ease;
   position: relative;
-}
-
-.toggle-menu-btn {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
-  /* margin: auto; */
-  /* background-color: #72aaa2; */
-  color: red;
-  padding: 10px;
-  /* border-radius: 5px; */
-  text-align: right;
-  cursor: pointer;
 }
 
 .menu-list ul {
@@ -205,14 +175,6 @@ h2 {
 
   .menu-list.minimized {
     width: 60px;
-  }
-
-  .toggle-menu-btn {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    margin: auto;
   }
 }
 </style>

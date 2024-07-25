@@ -8,11 +8,11 @@
         </h3>
       </div>
       <div class="form-container">
-        <h2>Signup</h2>
+        <h2>Sign Up</h2>
         <p>
           Already have an account?
           <router-link to="/LoginPage" class="nav-login-link"
-            >Login</router-link
+            >Log In</router-link
           >
         </p>
         <form @submit.prevent="signup">
@@ -55,7 +55,7 @@
           <div class="btn">
             <button type="submit" class="submit-button" :disabled="loading">
               <span v-if="loading">Loading...</span>
-              <span v-else>Signup</span>
+              <span v-else>Sign Up</span>
             </button>
           </div>
         </form>
@@ -63,9 +63,10 @@
         <!-- Success modal -->
         <div v-if="showSuccessModal" class="success-modal">
           <div class="modal-content">
-            <p>Signup successful!</p>
+            <img src="@/assets/success.png" alt="" />
+            <p>Sign up successful!</p>
             <router-link to="/LoginPage" class="login-link"
-              >Click here to login</router-link
+              >Click here to log in</router-link
             >
           </div>
         </div>
@@ -75,6 +76,8 @@
 </template>
 
 <script>
+import confetti from "canvas-confetti";
+
 export default {
   data() {
     return {
@@ -112,7 +115,24 @@ export default {
         this.businessName = "";
         this.email = "";
         this.password = "";
+
+        this.triggerConfetti();
       }, 4000);
+    },
+
+    triggerConfetti() {
+      // eslint-disable-next-line no-unused-vars
+      const width = window.innerWidth;
+      // eslint-disable-next-line no-unused-vars
+      const height = window.innerHeight;
+
+      confetti({
+        particleCount: 200,
+        spread: 200,
+        origin: { y: 0.6 },
+        colors: ["#bb8c0a", "#459185", "#1c0267", "#9ca3af", "fff"],
+        disableForReducedMotion: true,
+      });
     },
 
     clearErrors() {
@@ -143,9 +163,12 @@ export default {
 }
 
 .success-modal p {
-  padding: 10px;
   text-align: center;
   font-size: 18px;
+}
+
+.success-modal img {
+  width: 60px;
 }
 
 .modal-content {

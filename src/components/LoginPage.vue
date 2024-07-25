@@ -5,11 +5,11 @@
         <h3>You're almost there!</h3>
       </div>
       <div class="form-container">
-        <h2>Login</h2>
+        <h2>Log In</h2>
         <p>
           Don't have an account?
           <router-link to="/SignupPage" class="nav-signup-link"
-            >Signup</router-link
+            >Sign Up</router-link
           >
         </p>
         <form @submit.prevent="login">
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="btn">
-            <button type="submit" class="login-button">Login</button>
+            <button type="submit" class="login-button">Log In</button>
           </div>
           <div v-if="error" class="error-message">{{ error }}</div>
         </form>

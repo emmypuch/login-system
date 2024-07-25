@@ -15,12 +15,12 @@
       <ul>
         <li>
           <router-link to="/LoginPage" class="nav-login-link"
-            >Login</router-link
+            >Log In</router-link
           >
         </li>
         <li>
           <router-link to="/SignupPage" class="nav-signup-link"
-            >Signup</router-link
+            >Sign Up</router-link
           >
         </li>
       </ul>
@@ -32,12 +32,12 @@
       <ul>
         <li>
           <router-link to="/LoginPage" class="nav-login-link"
-            >Login</router-link
+            >Log In</router-link
           >
         </li>
         <li>
           <router-link to="/SignupPage" class="nav-signup-link"
-            >Signup</router-link
+            >Sign Up</router-link
           >
         </li>
       </ul>
