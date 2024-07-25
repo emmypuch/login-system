@@ -1,7 +1,14 @@
 <template>
   <div class="">
     <div class="dashboard-wrapper">
-      <div class="menu-list" :style="{ width: menuWidth }" @click="toggleMenu">
+      <div
+        class="menu-list"
+        :class="{ minimized: menuMinimized, expanded: !menuMinimized }"
+      >
+        <!-- <button class="toggle-btn" @click="toggleMenu">
+          <span v-if="menuMinimized">+</span>
+          <span v-else>-</span>
+        </button> -->
         <div class="company-logo">
           <img v-if="hasLogo" :src="companyLogoUrl" :alt="companyName" />
           <div v-else class="logo-placeholder">{{ initials }}</div>
@@ -17,13 +24,13 @@
           </li>
         </ul>
       </div>
-      <div class="contents" @click="toggleMenu">
+      <div class="contents">
         <div class="center">
           <h2>Welcome, {{ companyName }}</h2>
           <p>Hello happy team, let's get you started</p>
-          <router-link to="/DocumentUpload" class="upload-button"
-            >Upload Documents</router-link
-          >
+          <router-link to="/DocumentUpload" class="upload-button">
+            Upload Documents
+          </router-link>
         </div>
       </div>
     </div>
@@ -37,16 +44,13 @@ export default {
       companyName: "Teams Company",
       companyLogoUrl: "",
       initials: "TC",
-      menuMinimized: false,
+      menuMinimized: window.innerWidth <= 768,
     };
   },
 
   computed: {
     hasLogo() {
       return this.companyLogoUrl !== "";
-    },
-    menuWidth() {
-      return this.menuMinimized ? "20px" : "250px";
     },
   },
 
@@ -56,9 +60,27 @@ export default {
         this.$router.push("/");
       }, 500);
     },
+
     toggleMenu() {
       this.menuMinimized = !this.menuMinimized;
     },
+
+    handleResize() {
+      if (window.innerWidth <= 768) {
+        this.menuMinimized = true;
+      } else {
+        this.menuMinimized = false;
+      }
+    },
+  },
+
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
+  },
+
+  // eslint-disable-next-line vue/no-deprecated-destroyed-lifecycle
+  beforeDestroy() {
+    window.removeEventListener("resize", this.handleResize);
   },
 };
 </script>
@@ -71,7 +93,6 @@ export default {
 }
 
 .company-logo {
-  margin-bottom: 20px;
   text-align: center;
   display: flex;
   gap: 10px;
@@ -100,13 +121,7 @@ export default {
   border-radius: 50%;
 }
 
-.menu-list p {
-  margin-top: 12px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-div.menu-list {
+.menu-list {
   background: #459185;
   color: #fff;
   padding: 20px;
@@ -114,11 +129,27 @@ div.menu-list {
   overflow-y: auto;
   transition: width 0.3s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 60px;
+}
+
+.menu-list.expanded {
+  width: 250px;
+}
+
+.menu-list p {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .menu-list ul {
   list-style: none;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu-list li {
@@ -129,6 +160,7 @@ div.menu-list {
 .menu-list li a {
   text-decoration: none;
   color: #fff;
+  display: block;
 }
 
 .menu-list li:nth-child(5):hover {
@@ -141,11 +173,6 @@ div.menu-list {
   transition: background-color 0.3s ease;
 }
 
-.menu-list.minimized {
-  width: 60px;
-  transition: width 0.3s ease;
-}
-
 .active-menu-item {
   background-color: #72aaa2;
   color: #fff;
@@ -155,7 +182,7 @@ div.menu-list {
   width: 150px;
 }
 
-div.contents {
+.contents {
   background-color: #f0f0f0;
   padding: 20px;
   position: relative;
@@ -187,15 +214,61 @@ h2 {
   color: #367169;
 }
 
+/* .toggle-btn {
+  display: none;
+}
+
+.toggle-btn:hover {
+  background-color: #367169;
+} */
+
 @media screen and (max-width: 768px) {
   .menu-list {
-    height: auto;
-    padding-bottom: 20px;
+    width: 60px;
+    justify-content: center;
+  }
+
+  .menu-list.expanded {
     width: 250px;
   }
 
-  .menu-list.minimized {
-    width: 60px;
+  .menu-list ul {
+    padding: 0;
+    display: flex;
+    align-items: center;
   }
+
+  .menu-list li a {
+    text-align: center;
+  }
+
+  .company-logo {
+    flex-direction: column;
+    display: flex;
+  }
+
+  .company-logo img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-placeholder {
+    margin-left: 5px;
+  }
+
+  /* .toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: -50px;
+    background: #459185;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+  } */
 }
 </style>

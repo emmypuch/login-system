@@ -58,7 +58,7 @@ h1 {
     padding: 10px 30px;
     display: flex;
     flex-direction: column-reverse;
-    margin-top: 45px;
+    margin-top: 60px;
   }
 
   img {
