@@ -169,11 +169,6 @@ div.menu-list {
   width: 150px;
 }
 
-.navbar-logo {
-  position: relative;
-  top: 250px;
-}
-
 div.contents {
   background-color: #f0f0f0;
   padding: 20px;
@@ -228,6 +223,10 @@ h2 {
 
   .hamburger-menu {
     display: block;
+  }
+
+  .company-logo {
+    margin-top: 40px;
   }
 }
 </style>
