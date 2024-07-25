@@ -1,14 +1,11 @@
 <template>
   <div class="">
     <div class="dashboard-wrapper">
-      <div
-        class="menu-list"
-        :class="{ minimized: menuMinimized, expanded: !menuMinimized }"
-      >
-        <!-- <button class="toggle-btn" @click="toggleMenu">
-          <span v-if="menuMinimized">+</span>
-          <span v-else>-</span>
-        </button> -->
+      <button class="hamburger-menu" @click="toggleSidebar">
+        <span v-if="isSidebarVisible">☰</span>
+        <span v-else>×</span>
+      </button>
+      <div class="menu-list" :class="{ 'sidebar-hidden': !isSidebarVisible }">
         <div class="company-logo">
           <img v-if="hasLogo" :src="companyLogoUrl" :alt="companyName" />
           <div v-else class="logo-placeholder">{{ initials }}</div>
@@ -28,9 +25,9 @@
         <div class="center">
           <h2>Welcome, {{ companyName }}</h2>
           <p>Hello happy team, let's get you started</p>
-          <router-link to="/DocumentUpload" class="upload-button">
-            Upload Documents
-          </router-link>
+          <router-link to="/DocumentUpload" class="upload-button"
+            >Upload Documents</router-link
+          >
         </div>
       </div>
     </div>
@@ -44,7 +41,7 @@ export default {
       companyName: "Teams Company",
       companyLogoUrl: "",
       initials: "TC",
-      menuMinimized: window.innerWidth <= 768,
+      isSidebarVisible: true,
     };
   },
 
@@ -55,32 +52,15 @@ export default {
   },
 
   methods: {
+    toggleSidebar() {
+      this.isSidebarVisible = !this.isSidebarVisible;
+    },
+
     logout() {
       setTimeout(() => {
         this.$router.push("/");
       }, 500);
     },
-
-    toggleMenu() {
-      this.menuMinimized = !this.menuMinimized;
-    },
-
-    handleResize() {
-      if (window.innerWidth <= 768) {
-        this.menuMinimized = true;
-      } else {
-        this.menuMinimized = false;
-      }
-    },
-  },
-
-  mounted() {
-    window.addEventListener("resize", this.handleResize);
-  },
-
-  // eslint-disable-next-line vue/no-deprecated-destroyed-lifecycle
-  beforeDestroy() {
-    window.removeEventListener("resize", this.handleResize);
   },
 };
 </script>
@@ -92,7 +72,27 @@ export default {
   position: relative;
 }
 
+.hamburger-menu {
+  display: none;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  transition: color 0.3s ease;
+  color: #866304;
+}
+
+.hamburger-menu span {
+  display: inline-block;
+  font-size: 35px;
+}
+
 .company-logo {
+  margin-bottom: 20px;
   text-align: center;
   display: flex;
   gap: 10px;
@@ -121,7 +121,13 @@ export default {
   border-radius: 50%;
 }
 
-.menu-list {
+.menu-list p {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+div.menu-list {
   background: #459185;
   color: #fff;
   padding: 20px;
@@ -129,27 +135,19 @@ export default {
   overflow-y: auto;
   transition: width 0.3s ease;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  width: 60px;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  z-index: 999;
 }
 
-.menu-list.expanded {
-  width: 250px;
-}
-
-.menu-list p {
-  margin-top: 12px;
-  font-size: 18px;
-  font-weight: bold;
+.menu-list.sidebar-hidden {
+  transform: translateX(0);
 }
 
 .menu-list ul {
   list-style: none;
   padding: 15px;
-  display: flex;
-  flex-direction: column;
 }
 
 .menu-list li {
@@ -160,17 +158,6 @@ export default {
 .menu-list li a {
   text-decoration: none;
   color: #fff;
-  display: block;
-}
-
-.menu-list li:nth-child(5):hover {
-  background-color: #72aaa2;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 5px;
-  padding: 10px 30px;
-  width: 150px;
-  transition: background-color 0.3s ease;
 }
 
 .active-menu-item {
@@ -182,7 +169,12 @@ export default {
   width: 150px;
 }
 
-.contents {
+.navbar-logo {
+  position: relative;
+  top: 250px;
+}
+
+div.contents {
   background-color: #f0f0f0;
   padding: 20px;
   position: relative;
@@ -214,61 +206,28 @@ h2 {
   color: #367169;
 }
 
-/* .toggle-btn {
-  display: none;
-}
-
-.toggle-btn:hover {
-  background-color: #367169;
-} */
-
 @media screen and (max-width: 768px) {
-  .menu-list {
-    width: 60px;
-    justify-content: center;
+  .dashboard-wrapper {
+    display: block;
   }
 
-  .menu-list.expanded {
-    width: 250px;
-  }
-
-  .menu-list ul {
-    padding: 0;
-    display: flex;
-    align-items: center;
-  }
-
-  .menu-list li a {
-    text-align: center;
-  }
-
-  .company-logo {
-    flex-direction: column;
-    display: flex;
-  }
-
-  .company-logo img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .logo-placeholder {
-    margin-left: 5px;
-  }
-
-  /* .toggle-btn {
+  div.menu-list {
+    width: 100%;
     position: absolute;
-    top: 20px;
-    right: -50px;
-    background: #459185;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: background-color 0.3s ease;
-  } */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .menu-list.sidebar-hidden {
+    transform: translateX(0);
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
 }
 </style>

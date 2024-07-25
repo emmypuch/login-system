@@ -268,7 +268,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-top: 7px;
-  color: #1c0267;
+  color: #88909d;
   outline-color: #9ca3af;
 }
 
