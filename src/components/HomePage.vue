@@ -26,7 +26,6 @@ export default {
   components: {
     NavLinks,
   },
-  props: {},
 };
 </script>
 
@@ -67,7 +66,7 @@ h1 {
   }
 
   h1 {
-    font-size: 25px;
+    font-size: 23px;
     color: #459185;
     margin-top: 0px;
     text-align: center;
@@ -77,6 +76,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: 20px;
   }
 }
 </style>
