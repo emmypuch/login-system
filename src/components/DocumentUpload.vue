@@ -103,7 +103,7 @@ div.wrapper {
 }
 
 input {
-  width: 100%;
+  width: 92%;
   margin-top: 10px;
 }
 
@@ -114,7 +114,7 @@ label {
 
 .upload-documents h2 {
   color: #459185;
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
@@ -124,14 +124,15 @@ label {
 
 .upload-form label {
   display: block;
-  font-weight: bold;
+  font-size-adjust: 15px;
 }
 
 .upload-form .form-control-file {
-  width: 100%;
+  width: 94%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  color: #367169;
 }
 
 .upload-form .error-message {
@@ -148,6 +149,8 @@ label {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
+  font-size: 15px;
 }
 
 .upload-form .submit-button:hover {

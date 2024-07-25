@@ -25,7 +25,7 @@
       <!-- <div class="toggle-menu-btn" @click="toggleMenu">X</div> -->
       <div class="contents">
         <h2>Welcome, {{ companyName }}</h2>
-        <p>Hello happy team...</p>
+        <p>Hello happy team, let's get you started</p>
         <router-link to="/DocumentUpload" class="upload-button"
           >Upload Documents</router-link
         >
@@ -190,6 +190,10 @@ h2 {
 
 .upload-button:hover {
   background-color: #367169;
+}
+
+.contents p {
+  color: #367169;
 }
 
 @media screen and (max-width: 768px) {

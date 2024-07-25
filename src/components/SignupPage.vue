@@ -1,64 +1,73 @@
 <template>
   <div class="form-wrapper">
-    <div class="form-container">
-      <h2>Signup</h2>
-      <p>
-        Already have an account?
-        <router-link to="/LoginPage" class="nav-login-link">Login</router-link>
-      </p>
-      <form @submit.prevent="signup">
-        <div class="form-group">
-          <label>Business Name:</label> <br />
-          <input
-            type="text"
-            v-model="businessName"
-            class="input-field"
-            placeholder="Enter Business Name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label>Email:</label> <br />
-          <input
-            type="email"
-            v-model="email"
-            class="input-field"
-            placeholder="Enter Email Address"
-            required
-          />
-          <div v-if="formErrors.email" class="">
-            {{ formErrors.email }}
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Password:</label> <br />
-          <input
-            type="password"
-            v-model="password"
-            class="input-field"
-            placeholder="Enter Password"
-            required
-          />
-          <div v-if="formErrors.password" class="">
-            {{ formErrors.password }}
-          </div>
-        </div>
-        <div class="btn">
-          <button type="submit" class="submit-button">Signup</button>
-        </div>
-        <div v-if="error" class="error-message">{{ error }}</div>
-      </form>
-
-      <!-- Loading spinner -->
-      <div v-if="loading" class="loading-spinner">Loading...</div>
-
-      <!-- Success modal -->
-      <div v-if="showSuccessModal" class="success-modal">
-        <div class="modal-content">
-          <p>Signup successful!</p>
-          <router-link to="/LoginPage" class="login-link"
-            >Click here to login</router-link
+    <div class="grid-layout">
+      <div class="form-grid">
+        <h3>
+          Welcome, <br />
+          Let's get you on board!
+        </h3>
+      </div>
+      <div class="form-container">
+        <h2>Signup</h2>
+        <p>
+          Already have an account?
+          <router-link to="/LoginPage" class="nav-login-link"
+            >Login</router-link
           >
+        </p>
+        <form @submit.prevent="signup">
+          <div class="form-group">
+            <label>Business Name</label> <br />
+            <input
+              type="text"
+              v-model="businessName"
+              class="input-field"
+              placeholder="Enter Business Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Email</label> <br />
+            <input
+              type="email"
+              v-model="email"
+              class="input-field"
+              placeholder="Enter Email Address"
+              required
+            />
+            <div v-if="formErrors.email" class="">
+              {{ formErrors.email }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label> <br />
+            <input
+              type="password"
+              v-model="password"
+              class="input-field"
+              placeholder="Enter Password"
+              required
+            />
+            <div v-if="formErrors.password" class="">
+              {{ formErrors.password }}
+            </div>
+          </div>
+          <div class="btn">
+            <button type="submit" class="submit-button" :disabled="loading">
+              <span v-if="loading">Loading...</span>
+              <span v-else>Signup</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Success modal -->
+        <div v-if="showSuccessModal" class="success-modal">
+          <div class="modal-content">
+            <p>Signup successful!</p>
+            <router-link to="/LoginPage" class="login-link"
+              >Click here to login</router-link
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -69,7 +78,7 @@
 export default {
   data() {
     return {
-      businessNameName: "",
+      businessName: "",
       email: "",
       password: "",
       formErrors: {
@@ -77,7 +86,6 @@ export default {
         email: "",
         password: "",
       },
-      error: "",
       loading: false,
       showSuccessModal: false,
     };
@@ -93,7 +101,7 @@ export default {
         return;
       }
 
-      // Start loading spinner
+      // Loading spinner inside button
       this.loading = true;
 
       setTimeout(() => {
@@ -101,19 +109,16 @@ export default {
         this.showSuccessModal = true;
 
         // Clear form fields after successful signup
-        this.companyName = "";
+        this.businessName = "";
         this.email = "";
         this.password = "";
       }, 4000);
-
-      this.error = "Failed to signup. Please try again later.";
     },
 
     clearErrors() {
       this.formErrors.businessName = "";
       this.formErrors.email = "";
       this.formErrors.password = "";
-      this.error = "";
     },
   },
 };
@@ -158,6 +163,11 @@ export default {
   cursor: pointer;
 }
 
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .form-wrapper {
   display: flex;
   justify-content: center;
@@ -166,17 +176,38 @@ export default {
   background-color: #459185;
 }
 
+.form-grid {
+  background-color: #feefc7;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-grid h3 {
+  color: #459185;
+  font-size: 25px;
+}
+
 div.form-container {
   background-color: #fff;
   padding: 10px 30px;
-  border-radius: 3px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 600px;
+  width: 100%;
+  padding: 30px;
 }
 
 ::placeholder {
   color: #9ca3af;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 label {
@@ -206,8 +237,8 @@ div.form-group {
   margin-bottom: 20px;
 }
 
-.input-field {
-  width: 100%;
+input {
+  width: 92%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -223,7 +254,7 @@ div.btn {
 }
 
 .submit-button {
-  width: 200px;
+  width: 100%;
   padding: 10px;
   font-size: 18px;
   background-color: #459185;
@@ -233,15 +264,32 @@ div.btn {
   cursor: pointer;
 }
 
-.error-message {
+/* .error-message {
   color: red;
   font-size: 14px;
   margin-top: 5px;
-}
+} */
 
 @media screen and (max-width: 768px) {
   div.form-container {
     width: 300px;
+  }
+
+  .grid-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-grid {
+    display: none;
+  }
+
+  div.form-container {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 }
 </style>

@@ -4,9 +4,9 @@
     <div class="navbar">
       <router-link to="/" class="navbar-logo">SafeSign</router-link>
       <button class="navbar-toggle" @click="toggleMenu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span class="icon-bar" :class="{ open: isMenuOpen }"></span>
+        <span class="icon-bar" :class="{ open: isMenuOpen }"></span>
+        <span class="icon-bar" :class="{ open: isMenuOpen }"></span>
       </button>
     </div>
 
@@ -128,6 +128,7 @@ export default {
   display: none;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .menu ul {
@@ -197,10 +198,40 @@ export default {
     width: 100%;
     z-index: 1000;
     display: none;
+    /* transform: translateY(-100%);
+    opacity: 0; */
   }
 
   .menu-open {
     display: block;
+    padding: 15px;
+    /* transform: translateY(0);
+    opacity: 1; */
+  }
+
+  .menu-open ul {
+    animation: fadeInDown 0.5s ease forwards;
+  }
+
+  .navbar-toggle .icon-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #459185;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .navbar-toggle .icon-bar.open:nth-child(1) {
+    transform: translateY(8px) rotate(-45deg);
+  }
+
+  .navbar-toggle .icon-bar.open:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar-toggle .icon-bar.open:nth-child(3) {
+    transform: translateY(-8px) rotate(45deg);
   }
 }
 </style>
